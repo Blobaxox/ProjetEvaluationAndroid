@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -19,6 +20,7 @@ public class ActivityFilm extends AppCompatActivity {
     private ImageView affiche;
     private TextView nomFilm;
     private Film filmSelectionne;
+    private LinearLayout listeSeances;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,14 +28,14 @@ public class ActivityFilm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film);
 
+        affiche = findViewById(R.id.afficheFilm);
+        nomFilm = findViewById(R.id.nomFilm);
+        listeSeances = findViewById(R.id.listeSeances);
+
         Bundle bundle = getIntent().getExtras();
         int idFilm = bundle.getInt("idFilm");
 
         unFilmDAO = new FilmDAO(this);
-
-        affiche = findViewById(R.id.afficheFilm);
-        nomFilm = findViewById(R.id.nomFilm);
-
         filmSelectionne = unFilmDAO.getFilm((long) idFilm);
 
         affiche.setImageResource(filmSelectionne.getIdImage());
@@ -44,9 +46,17 @@ public class ActivityFilm extends AppCompatActivity {
 
     public void afficherSeances()
     {
+        int i = 0;
         for(String seance : filmSelectionne.getListeSeances())
         {
+            Button bout = new Button(this);
+            bout.setId(i);
+            bout.setText(getString(R.string.labelSeance) + " " + seance);
+            bout.setPadding(50,0,50,0);
+            bout.setOnClickListener(new SeanceOnClickListener());
 
+            listeSeances.addView(bout);
+            i++;
         }
     }
 
@@ -58,7 +68,7 @@ public class ActivityFilm extends AppCompatActivity {
             Intent intent = new Intent(ActivityFilm.this, ActivityReserver.class);
             Bundle bundle = new Bundle();
             bundle.putInt("idFilm", (int) filmSelectionne.getId());
-            bundle.putString("horaire", null);
+            bundle.putString("horaire", filmSelectionne.getListeSeances().get(v.getId()));
             intent.putExtras(bundle);
             startActivity(intent);
             finish();

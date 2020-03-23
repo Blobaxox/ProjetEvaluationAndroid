@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/afficheFilm2"
+            android:id="@+id/afficheFilmReserv"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:layout_weight="1"
@@ -30,7 +30,7 @@
             android:paddingTop="20dp">
 
             <TextView
-                android:id="@+id/L_nomFilm2"
+                android:id="@+id/nomFilmReserv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -41,7 +41,6 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/L_seance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -50,7 +49,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/L_seanceChoisie"
+                android:id="@+id/horaireReserv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -75,22 +74,20 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/L_nombreDePlace"
             android:layout_width="53dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/labelNombreDePlace"
+            android:text="Nombre de places"
             android:textColor="#000000"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/L_tarif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/labelTarif"
+            android:text="Tarif"
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>
@@ -103,7 +100,7 @@
         android:weightSum="10">
 
         <TextView
-            android:id="@+id/L_place1"
+            android:id="@+id/nbPlacesTarifNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -114,7 +111,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/B_plus1"
+            android:id="@+id/boutPlusTarifNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -124,7 +121,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/B_moins1"
+            android:id="@+id/boutMoinsTarifNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -135,11 +132,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/L_tarifNormal"
+            android:id="@+id/tarifNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="@string/labelTarifNormal"
+            android:text="Normal "
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>
@@ -151,7 +148,7 @@
         android:weightSum="10">
 
         <TextView
-            android:id="@+id/l_place"
+            android:id="@+id/nbPlacesTarifEtud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -162,7 +159,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/b_plus"
+            android:id="@+id/boutPlusTarifEtud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -172,7 +169,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/b_moins"
+            android:id="@+id/boutMoinsTarifEtud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -183,11 +180,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/l_tarifEtudiant"
+            android:id="@+id/tarifEtud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="@string/labelTarifEtudiant"
+            android:text="Etudiant "
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>
@@ -199,7 +196,7 @@
         android:weightSum="10">
 
         <TextView
-            android:id="@+id/l_place2"
+            android:id="@+id/nbPlacesTarifJeune"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -210,7 +207,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/b_plus2"
+            android:id="@+id/boutPlusTarifJeune"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -220,7 +217,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/b_moins2"
+            android:id="@+id/boutMoinsTarifJeune"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -231,22 +228,22 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/l_tarifJeune"
+            android:id="@+id/tarifJeune"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:text="@string/labelTarifJeune"
+            android:text="Jeune "
             android:textColor="#000000"
             android:textSize="20sp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/boutReserver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_marginTop="10dp"
-        android:text="@string/boutonReserver"
+        android:text="Réserver"
         android:textColor="#000000"
         android:textSize="18sp" />
 

@@ -39,6 +39,12 @@ public class FilmDAO extends SQLiteOpenHelper
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
                 "'11h00', (SELECT id FROM Film WHERE nom = 'Joker'))");
 
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'15h00', (SELECT id FROM Film WHERE nom = 'Joker'))");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'19h45', (SELECT id FROM Film WHERE nom = 'Joker'))");
+
         // Countdown
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
                 "'Countdown', 'Justin Dec', '1h30', 'VO'," + R.drawable.countdown + ")");
@@ -51,14 +57,14 @@ public class FilmDAO extends SQLiteOpenHelper
                 "'Sonic', 'Jeff Fowler', '1h40', 'VF'," + R.drawable.sonic + ")");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'20h00', (SELECT id FROM Film WHERE nom = 'Countdown'))");
+                "'20h00', (SELECT id FROM Film WHERE nom = 'Sonic'))");
 
         // Endgame
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
                 "'Avengers : Endgame', 'Joe Russo et Anthony Russo', '3h02', 'VO'," + R.drawable.endgame + ")");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'22h00', (SELECT id FROM Film WHERE nom = 'Countdown'))");
+                "'22h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'))");
     }
 
     @Override

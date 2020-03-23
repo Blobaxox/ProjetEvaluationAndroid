@@ -1,16 +1,7 @@
 <resources>
     <string name="app_name">CinéDroid</string>
-    <string name="labelAffiche">A l\'affiche</string>
     <string name="labelSeance">Séance de</string>
-    <string name="labelNombreDePlace">Nombre de places</string>
-    <string name="labelTarif">Tarif</string>
-    <string name="labelTarifNormal">Normal 9,60€</string>
-    <string name="labelTarifEtudiant">Etudiant 7,00€</string>
-    <string name="labelTarifJeune">Jeune 5,00€</string>
-    <string name="labelCoutTotal">Coût total :</string>
-    <string name="labelReserver">Réservation effectuée</string>
 
     <string name="boutonPlus">+</string>
     <string name="boutoMoins">-</string>
-    <string name="boutonReserver">Réserver</string>
 </resources>

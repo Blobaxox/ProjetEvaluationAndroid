@@ -8,7 +8,7 @@
     tools:context=".ActivityRecapitulatif">
 
     <ImageView
-        android:id="@+id/afficheFilm3"
+        android:id="@+id/afficheFilmRecap"
         android:layout_width="250dp"
         android:layout_height="380dp"
         android:layout_gravity="center"
@@ -18,7 +18,7 @@
         app:srcCompat="@android:color/holo_red_light" />
 
     <TextView
-        android:id="@+id/L_nomFilm2"
+        android:id="@+id/nomFilmRecap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -45,7 +45,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/horaireRecap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -67,12 +67,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@string/labelCoutTotal"
+            android:text="Coût total : "
             android:textColor="#000000"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/cout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/labelReserver"
+        android:text="Réservation effectuée"
         android:textColor="#000000"
         android:textSize="20sp" />
 </LinearLayout>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -59,25 +60,30 @@ public class MainActivity extends AppCompatActivity {
 
             TextView titre = new TextView(this);
             titre.setText(filmCourant.getNom());
-            titre.setTextSize(30);
+            titre.setTextSize(25);
             titre.setTypeface(null, Typeface.BOLD);
             layoutInfos.addView(titre);
 
             TextView real = new TextView(this);
             real.setText(filmCourant.getRealisateur());
-            real.setTextSize(30);
+            real.setTextSize(25);
             layoutInfos.addView(real);
 
             TextView duree = new TextView(this);
             duree.setText(filmCourant.getDuree());
-            duree.setTextSize(30);
+            duree.setTextSize(25);
             layoutInfos.addView(duree);
 
             layoutFilm.addView(layoutInfos);
 
+            Space espaceAvantLangue = new Space(this);
+            espaceAvantLangue.setMinimumWidth(30);
+            layoutFilm.addView(espaceAvantLangue);
+
             TextView langue = new TextView(this);
             langue.setText(filmCourant.getLangue());
-            langue.setTextSize(40);
+            langue.setTextSize(30);
+            langue.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
             layoutFilm.addView(langue);
 
             layoutFilm.setClickable(true);
