@@ -14,12 +14,13 @@
         android:paddingRight="20dp">
 
         <LinearLayout
+            android:id="@+id/listeFilms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/L_affiche"
+                android:id="@+id/tv_affiche"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="false"

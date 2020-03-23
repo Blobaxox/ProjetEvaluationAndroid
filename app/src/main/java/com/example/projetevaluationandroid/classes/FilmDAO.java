@@ -32,17 +32,33 @@ public class FilmDAO extends SQLiteOpenHelper
                 "idFilm INTEGER NOT NULL," +
                 "FOREIGN KEY (idFilm) REFERENCES Film(id));");
 
+        // Joker
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'film1', 'real1', '2h30', 'VF'," + R.drawable.film1 + ")");
+                "'Joker', 'Todd Phillips', '2h02', 'VF'," + R.drawable.joker + ")");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'11h00', (SELECT id FROM Film WHERE nom = 'film1'))");
+                "'11h00', (SELECT id FROM Film WHERE nom = 'Joker'))");
 
+        // Countdown
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'film2', 'real2', '1h30', 'VO'," + R.drawable.film2 + ")");
+                "'Countdown', 'Justin Dec', '1h30', 'VO'," + R.drawable.countdown + ")");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'19h45', (SELECT id FROM Film WHERE nom = 'film2'))");
+                "'19h45', (SELECT id FROM Film WHERE nom = 'Countdown'))");
+
+        // Sonic
+        base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
+                "'Sonic', 'Jeff Fowler', '1h40', 'VF'," + R.drawable.sonic + ")");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'20h00', (SELECT id FROM Film WHERE nom = 'Countdown'))");
+
+        // Endgame
+        base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
+                "'Avengers : Endgame', 'Joe Russo et Anthony Russo', '3h02', 'VO'," + R.drawable.endgame + ")");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'22h00', (SELECT id FROM Film WHERE nom = 'Countdown'))");
     }
 
     @Override
@@ -57,57 +73,47 @@ public class FilmDAO extends SQLiteOpenHelper
         String requete = "SELECT * FROM FILM;";
 
         curseur = this.getReadableDatabase().rawQuery(requete, null);
+        ArrayList<Film> listeDesFilms = cursorToFilmArrayList(curseur);
         this.getReadableDatabase().close();
 
-        return cursorToFilmArrayList(curseur);
+        return listeDesFilms;
     }
 
     public Film getFilm(long id)
     {
-        Film unFilm = null;
+        Film leFilm = null;
         Cursor curseur;
 
         String requete = "SELECT * FROM FILM WHERE id = ?";
 
         curseur = this.getReadableDatabase().rawQuery(requete, new String[] {id + ""});
-        this.getReadableDatabase().close();
-
-        return cursorToFilm(curseur);
-    }
-
-    public Film getFilm(String nom)
-    {
-        Film unFilm = null;
-        Cursor curseur;
-
-        String requete = "SELECT * FROM FILM WHERE nom = ?";
-
-        curseur = this.getReadableDatabase().rawQuery(requete, new String[] {nom + ""});
 
         if(curseur.getCount() > 0)
         {
-            unFilm = cursorToFilm(curseur);
+            leFilm = cursorToFilm(curseur);
         }
         else
         {
-            unFilm = new Film();
+            leFilm = new Film();
         }
 
         this.getReadableDatabase().close();
 
-        return unFilm;
+        return leFilm;
     }
 
-    public ArrayList<String> getSeancesOfFilm(long idFilm)
+    private ArrayList<String> getSeancesOfFilm(long idFilm)
     {
         Cursor curseur;
+        ArrayList<String> listeSeances;
 
         String requete = "SELECT * FROM SEANCE WHERE idFilm = ?";
 
         curseur = this.getReadableDatabase().rawQuery(requete, new String[] {idFilm + ""});
+        listeSeances = cursorToSeancesArrayList(curseur);
         this.getReadableDatabase().close();
 
-        return cursorToSeancesArrayList(curseur);
+        return listeSeances;
     }
 
     private ArrayList<Film> cursorToFilmArrayList(Cursor curseur)
@@ -120,6 +126,7 @@ public class FilmDAO extends SQLiteOpenHelper
         String duree;
         String langue;
         int idImage;
+        ArrayList<String> listeSeances;
 
         curseur.moveToFirst();
 
@@ -131,8 +138,9 @@ public class FilmDAO extends SQLiteOpenHelper
             duree = curseur.getString(3);
             langue = curseur.getString(4);
             idImage = curseur.getInt(5);
+            listeSeances = getSeancesOfFilm(id);
 
-            listeFilms.add(new Film(id, nom, realisateur, duree, langue, idImage));
+            listeFilms.add(new Film(id, nom, realisateur, duree, langue, idImage, listeSeances));
             curseur.moveToNext();
         }
 
@@ -149,6 +157,7 @@ public class FilmDAO extends SQLiteOpenHelper
         String duree;
         String langue;
         int idImage;
+        ArrayList<String> listeSeances;
 
         curseur.moveToFirst();
 
@@ -158,8 +167,9 @@ public class FilmDAO extends SQLiteOpenHelper
         duree = curseur.getString(3);
         langue = curseur.getString(4);
         idImage = curseur.getInt(5);
+        listeSeances = getSeancesOfFilm(id);
 
-        unFilm = new Film(id, nom, realisateur, duree, langue, idImage);
+        unFilm = new Film(id, nom, realisateur, duree, langue, idImage, listeSeances);
 
         return unFilm;
     }

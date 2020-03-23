@@ -1,6 +1,6 @@
 package com.example.projetevaluationandroid.classes;
 
-import com.example.projetevaluationandroid.R;
+import java.util.ArrayList;
 
 public class Film
 {
@@ -11,8 +11,9 @@ public class Film
     private String duree;
     private String langue;
     private int idImage;
+    private ArrayList<String> listeSeances;
 
-    public Film(long id, String nom, String realisateur, String duree, String langue, int idImage)
+    public Film(long id, String nom, String realisateur, String duree, String langue, int idImage, ArrayList<String> listeSeances)
     {
         this.id = id;
         this.nom = nom;
@@ -20,6 +21,7 @@ public class Film
         this.duree = duree;
         this.langue = langue;
         this.idImage = idImage;
+        this.listeSeances = listeSeances;
     }
 
     // Constructeur à employer en cas d'erreur
@@ -33,7 +35,7 @@ public class Film
         return id;
     }
 
-    public void setId(long id)
+    public void setId(int id)
     {
         this.id = id;
     }
@@ -86,5 +88,15 @@ public class Film
     public void setIdImage(int idImage)
     {
         this.idImage = idImage;
+    }
+
+    public ArrayList<String> getListeSeances()
+    {
+        return this.listeSeances;
+    }
+
+    public void setListeSeances(ArrayList<String> listeSeances)
+    {
+        this.listeSeances = listeSeances;
     }
 }
