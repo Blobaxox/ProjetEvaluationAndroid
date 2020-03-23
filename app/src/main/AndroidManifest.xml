@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ActivityRecapitulatif"></activity>
         <activity android:name=".ActivityReserver" />
-        <activity android:name=".ActivityFilm" />
+        <activity android:name=".ActivityFilm">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
