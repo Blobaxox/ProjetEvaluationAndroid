@@ -54,11 +54,11 @@ public class ActivityReserver extends AppCompatActivity {
         boutReserver = findViewById(R.id.boutReserver);
 
         Bundle bundle = getIntent().getExtras();
-        int idFilm = bundle.getInt("idFilm");
+        long idFilm = bundle.getLong("idFilm");
         String seanceSelect = bundle.getString("horaire");
 
         unFilmDAO = new FilmDAO(this);
-        filmSelectionne = unFilmDAO.getFilm((long) idFilm);
+        filmSelectionne = unFilmDAO.getFilm(idFilm);
 
         affiche.setImageResource(filmSelectionne.getIdImage());
         nomFilm.setText(filmSelectionne.getNom());
@@ -87,7 +87,7 @@ public class ActivityReserver extends AppCompatActivity {
             {
                 Intent intent = new Intent(ActivityReserver.this, ActivityRecapitulatif.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("idFilm", (int) filmSelectionne.getId());
+                bundle.putLong("idFilm", filmSelectionne.getId());
                 bundle.putString("horaire", horaire.getText().toString());
                 bundle.putDouble("cout", calculerCout());
                 intent.putExtras(bundle);

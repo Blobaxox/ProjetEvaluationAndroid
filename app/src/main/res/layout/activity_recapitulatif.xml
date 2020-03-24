@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/afficheFilmRecap"
-        android:layout_width="250dp"
-        android:layout_height="380dp"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:clickable="false"
         android:paddingTop="20dp"

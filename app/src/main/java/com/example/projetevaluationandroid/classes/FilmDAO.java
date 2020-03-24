@@ -34,43 +34,80 @@ public class FilmDAO extends SQLiteOpenHelper
 
         // Joker
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Joker', 'Todd Phillips', '2h02', 'VF'," + R.drawable.joker + ")");
+                "'Joker', 'Todd Phillips', '2h02', 'VF'," + R.drawable.joker + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'11h00', (SELECT id FROM Film WHERE nom = 'Joker'))");
+                "'11h00', (SELECT id FROM Film WHERE nom = 'Joker'));");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'15h00', (SELECT id FROM Film WHERE nom = 'Joker'))");
+                "'15h00', (SELECT id FROM Film WHERE nom = 'Joker'));");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'19h45', (SELECT id FROM Film WHERE nom = 'Joker'))");
+                "'19h45', (SELECT id FROM Film WHERE nom = 'Joker'));");
 
         // Countdown
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Countdown', 'Justin Dec', '1h30', 'VO'," + R.drawable.countdown + ")");
+                "'Countdown', 'Justin Dec', '1h30', 'VO'," + R.drawable.countdown + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'19h45', (SELECT id FROM Film WHERE nom = 'Countdown'))");
+                "'19h45', (SELECT id FROM Film WHERE nom = 'Countdown'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'23h00', (SELECT id FROM Film WHERE nom = 'Countdown'));");
 
         // Sonic
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Sonic', 'Jeff Fowler', '1h40', 'VF'," + R.drawable.sonic + ")");
+                "'Sonic', 'Jeff Fowler', '1h40', 'VF'," + R.drawable.sonic + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
                 "'20h00', (SELECT id FROM Film WHERE nom = 'Sonic'))");
 
         // Endgame
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Avengers : Endgame', 'Joe Russo et Anthony Russo', '3h02', 'VO'," + R.drawable.endgame + ")");
+                "'Avengers : Endgame', 'Joe Russo', '3h02', 'VO'," + R.drawable.endgame + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'22h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'))");
+                "'10h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'22h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase base, int oldVersion, int newVersion)
     {
         // On est obligé de l'implémenter
+    }
+
+    public void ajouterFilm(Film unFilm)
+    {
+        SQLiteDatabase base = this.getWritableDatabase();
+
+        String reqFilm = "INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES ('" +
+                unFilm.getNom() + "', '" + unFilm.getRealisateur() + "', '" + unFilm.getDuree() +
+                "', '" + unFilm.getLangue() + "', " + unFilm.getIdImage() + ");";
+
+        base.execSQL(reqFilm);
+
+        for(String seance : unFilm.getListeSeances())
+        {
+            String reqSeance = "INSERT INTO Seance (heure, idFilm) VALUES (" +
+                    "'" + seance + "', (SELECT id FROM Film WHERE nom = '" + unFilm.getNom() + "'));";
+
+            base.execSQL(reqSeance);
+        }
+
+        base.close();
+    }
+
+    public void supprimerFilm(long id)
+    {
+        SQLiteDatabase base = this.getWritableDatabase();
+
+        base.execSQL("DELETE FROM Seance WHERE idFilm = " + id + ";");
+        base.execSQL("DELETE FROM Film WHERE id = " + id + ";");
+
+        base.close();
     }
 
     public ArrayList<Film> getAllFilms()

@@ -67,7 +67,7 @@ public class ActivityFilm extends AppCompatActivity {
         {
             Intent intent = new Intent(ActivityFilm.this, ActivityReserver.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("idFilm", (int) filmSelectionne.getId());
+            bundle.putLong("idFilm", filmSelectionne.getId());
             bundle.putString("horaire", filmSelectionne.getListeSeances().get(v.getId()));
             intent.putExtras(bundle);
             startActivity(intent);

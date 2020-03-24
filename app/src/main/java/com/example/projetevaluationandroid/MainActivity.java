@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.projetevaluationandroid.classes.Film;
 import com.example.projetevaluationandroid.classes.FilmDAO;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private FilmDAO unFilmDAO;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             espaceEntreFilms.setMinimumHeight(40);
             listeFilms.addView(espaceEntreFilms);
 
+            // Layout cliquable contenant toutes les infos du film
             LinearLayout layoutFilm = new LinearLayout(this);
             layoutFilm.setId((int) filmCourant.getId());
             layoutFilm.setOrientation(LinearLayout.HORIZONTAL);
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             langue.setText(filmCourant.getLangue());
             langue.setTextSize(30);
             langue.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+
             layoutFilm.addView(langue);
 
             layoutFilm.setClickable(true);
