@@ -3,13 +3,11 @@ package com.example.projetevaluationandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
 import com.example.projetevaluationandroid.classes.Film;
 import com.example.projetevaluationandroid.classes.FilmDAO;
@@ -46,17 +44,14 @@ public class ActivityFilm extends AppCompatActivity {
 
     public void afficherSeances()
     {
-        int i = 0;
-        for(String seance : filmSelectionne.getListeSeances())
+        for(int i = 0; i < filmSelectionne.getListeSeances().size(); i++)
         {
             Button bout = new Button(this);
             bout.setId(i);
-            bout.setText(getString(R.string.labelSeance) + " " + seance);
-            bout.setPadding(50,0,50,0);
+            bout.setText(getString(R.string.labelSeance) + " " + filmSelectionne.getListeSeances().get(i));
             bout.setOnClickListener(new SeanceOnClickListener());
 
             listeSeances.addView(bout);
-            i++;
         }
     }
 

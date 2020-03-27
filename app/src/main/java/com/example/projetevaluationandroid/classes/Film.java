@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Film
 {
-
     private long id;
     private String nom;
     private String realisateur;

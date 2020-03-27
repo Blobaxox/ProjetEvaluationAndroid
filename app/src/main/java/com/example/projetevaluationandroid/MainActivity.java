@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.example.projetevaluationandroid.classes.Film;
 import com.example.projetevaluationandroid.classes.FilmDAO;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     private FilmDAO unFilmDAO;
@@ -41,60 +39,64 @@ public class MainActivity extends AppCompatActivity {
             espaceEntreFilms.setMinimumHeight(40);
             listeFilms.addView(espaceEntreFilms);
 
-            // Layout cliquable contenant toutes les infos du film
+            // Layout cliquable contenant l'affiche et toutes les infos du film
             LinearLayout layoutFilm = new LinearLayout(this);
             layoutFilm.setId((int) filmCourant.getId());
             layoutFilm.setOrientation(LinearLayout.HORIZONTAL);
             layoutFilm.setBackgroundColor(getResources().getColor(R.color.grey));
-            layoutFilm.setMinimumWidth(500);
 
             ImageView affiche = new ImageView(this);
             affiche.setImageResource(filmCourant.getIdImage());
             affiche.setAdjustViewBounds(true);
-            affiche.setMaxWidth(300);
+            affiche.setMaxHeight(500);
             layoutFilm.addView(affiche);
 
             Space espaceAvantInfos = new Space(this);
             espaceAvantInfos.setMinimumWidth(30);
             layoutFilm.addView(espaceAvantInfos);
 
+            // Layout contenant toutes les infos du film
+            LinearLayout.LayoutParams paramsInfos =
+                    new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1);
             LinearLayout layoutInfos = new LinearLayout(this);
             layoutInfos.setOrientation(LinearLayout.VERTICAL);
+            layoutInfos.setLayoutParams(paramsInfos);
 
             TextView titre = new TextView(this);
             titre.setText(filmCourant.getNom());
-            titre.setTextSize(25);
+            titre.setTextSize(20);
             titre.setTypeface(null, Typeface.BOLD);
             layoutInfos.addView(titre);
 
             TextView real = new TextView(this);
             real.setText(filmCourant.getRealisateur());
-            real.setTextSize(25);
+            real.setTextSize(20);
             layoutInfos.addView(real);
 
             TextView duree = new TextView(this);
             duree.setText(filmCourant.getDuree());
-            duree.setTextSize(25);
+            duree.setTextSize(20);
             layoutInfos.addView(duree);
-
-            layoutFilm.addView(layoutInfos);
-
-            Space espaceAvantLangue = new Space(this);
-            espaceAvantLangue.setMinimumWidth(30);
-            layoutFilm.addView(espaceAvantLangue);
 
             TextView langue = new TextView(this);
             langue.setText(filmCourant.getLangue());
-            langue.setTextSize(30);
-            langue.setGravity(Gravity.BOTTOM | Gravity.RIGHT);
+            langue.setTextSize(20);
+            // Nous ne comprenons pas pourquoi la langue refuse de se mettre en bas à droite
+            langue.setGravity(Gravity.RIGHT | Gravity.BOTTOM);
+            langue.setPadding(0,0,15,0);
+            layoutInfos.addView(langue);
 
-            layoutFilm.addView(langue);
+            layoutFilm.addView(layoutInfos);
 
             layoutFilm.setClickable(true);
             layoutFilm.setOnClickListener(new FilmOnClickListener());
 
             listeFilms.addView(layoutFilm);
         }
+
+        Space espaceApresFilms = new Space(this);
+        espaceApresFilms.setMinimumHeight(40);
+        listeFilms.addView(espaceApresFilms);
     }
 
     private class FilmOnClickListener implements View.OnClickListener

@@ -34,7 +34,7 @@ public class FilmDAO extends SQLiteOpenHelper
 
         // Joker
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Joker', 'Todd Phillips', '2h02', 'VF'," + R.drawable.joker + ");");
+                "'Joker', 'Todd Phillips', '2h02', 'VOSTFR'," + R.drawable.joker + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
                 "'11h00', (SELECT id FROM Film WHERE nom = 'Joker'));");
@@ -45,32 +45,57 @@ public class FilmDAO extends SQLiteOpenHelper
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
                 "'19h45', (SELECT id FROM Film WHERE nom = 'Joker'));");
 
-        // Countdown
+        // Mad Max: Fury Road
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Countdown', 'Justin Dec', '1h30', 'VO'," + R.drawable.countdown + ");");
+                "'Mad Max: Fury Road', 'George Miller', '2h00', 'VF'," + R.drawable.mad_max_fury_road + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'19h45', (SELECT id FROM Film WHERE nom = 'Countdown'));");
+                "'16h00', (SELECT id FROM Film WHERE nom = 'Mad Max: Fury Road'));");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'23h00', (SELECT id FROM Film WHERE nom = 'Countdown'));");
+                "'19h45', (SELECT id FROM Film WHERE nom = 'Mad Max: Fury Road'));");
 
-        // Sonic
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'23h00', (SELECT id FROM Film WHERE nom = 'Mad Max: Fury Road'));");
+
+        // Your Name.
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
-                "'Sonic', 'Jeff Fowler', '1h40', 'VF'," + R.drawable.sonic + ");");
+                "'Your Name.', 'Makoto Shinkai', '1h52', 'VO'," + R.drawable.your_name + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'20h00', (SELECT id FROM Film WHERE nom = 'Sonic'))");
+                "'20h00', (SELECT id FROM Film WHERE nom = 'Your Name.'));");
 
-        // Endgame
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'22h00', (SELECT id FROM Film WHERE nom = 'Your Name.'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'23h30', (SELECT id FROM Film WHERE nom = 'Your Name.'));");
+
+        // Avengers : Endgame
         base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
                 "'Avengers : Endgame', 'Joe Russo', '3h02', 'VO'," + R.drawable.endgame + ");");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
-                "'10h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
+                "'05h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'09h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
 
         base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
                 "'22h00', (SELECT id FROM Film WHERE nom = 'Avengers : Endgame'));");
+
+        // Jojo Rabbit
+        base.execSQL("INSERT INTO Film (nom, realisateur, duree, langue, idImage) VALUES (" +
+                "'Jojo Rabbit', 'Taika Waititi', '1h48', 'VO'," + R.drawable.jojo_rabbit + ");");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'05h00', (SELECT id FROM Film WHERE nom = 'Jojo Rabbit'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'09h00', (SELECT id FROM Film WHERE nom = 'Jojo Rabbit'));");
+
+        base.execSQL("INSERT INTO Seance (heure, idFilm) VALUES (" +
+                "'22h00', (SELECT id FROM Film WHERE nom = 'Jojo Rabbit'));");
     }
 
     @Override
@@ -127,7 +152,7 @@ public class FilmDAO extends SQLiteOpenHelper
         Film leFilm = null;
         Cursor curseur;
 
-        String requete = "SELECT * FROM FILM WHERE id = ?";
+        String requete = "SELECT * FROM FILM WHERE id = ?;";
 
         curseur = this.getReadableDatabase().rawQuery(requete, new String[] {id + ""});
 
